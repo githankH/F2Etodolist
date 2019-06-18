@@ -1,10 +1,12 @@
 import React from 'react';
 import {
   Container,Divider, 
-  Grid,Header} from 'semantic-ui-react'
+  Grid,Header} from 'semantic-ui-react';
 
 import TodoInput from './TodoInput';
-import TodoItems from './TodoItems'
+import TodoItems,{TodoLists} from './TodoItems';
+//import  TodoLists  from './TodoLists';
+
 
 /*
 one todo has
@@ -12,8 +14,8 @@ one todo has
 1-1. id(private)
 ----- n: outline
 2. edit, y:blue,
-3. completed, y: gold, 
-4. atTop y: gold, 
+3. completed, y: gold,
+4. atTop y: gold,
 5. date, file, comment, y:exist, n: no show
  */
 
@@ -61,21 +63,28 @@ class App extends React.Component{
 
   render(){
   return (
-    <Container style={{marginTop:'3rem'}}>
+    <Container style={{margin:'3rem auto'}}>
       <Header as='h2'>Semantic UI React version</Header>
       <Divider />
-      <Grid stackable textAlign='center' >
+      <Grid stackable centered  >
         <Grid.Row >
-        <Grid.Column style={{maxWidth:'50%'}} >
+        <Grid.Column  width={10} >
           <TodoInput getInputData={this.getInputData}/>
         </Grid.Column>
         </Grid.Row>
 
-        <Grid.Row textAlign='left'>
-        <Grid.Column style={{maxWidth:'50%'}} >
-           <TodoItems todos={this.state.todos}/> 
+        <Grid.Row>
+        <Grid.Column  width={2} >
+           <TodoItems todos={this.state.todos}/>
         </Grid.Column>
         </Grid.Row>
+
+        <Grid.Row >
+        <Grid.Column >
+           <TodoLists />
+        </Grid.Column>
+        </Grid.Row>
+
       </Grid>
     </Container>
   );

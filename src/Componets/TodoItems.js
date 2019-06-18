@@ -1,5 +1,5 @@
 import React from 'react';
-import {Item,Icon } from 'semantic-ui-react'
+import {Item,Icon, List } from 'semantic-ui-react'
 
 function TodoItems ({todos,editTodoItem}){
     return(
@@ -20,4 +20,33 @@ function TodoItems ({todos,editTodoItem}){
     );
 }
 
-export default TodoItems ;
+export function TodoLists() {
+    return (
+      <List size="huge">
+        <List.Item >
+            <List.Icon name='square outline' size='large' />
+            <List.Content>
+                <List.Header as='a'> <span >1234456ㄅㄆ</span></List.Header>
+                <List.Description>
+                    <List.Icon name="calendar outline" size="mini" />
+                    <List.Icon name="file outline" size="mini" />
+                </List.Description>
+            </List.Content>
+        </List.Item>
+        <List.Item>
+            <List.Icon name='square outline' size='large' />
+            <List.Content>
+                <List.Header as='a'> <span >1234456ㄅㄆ</span></List.Header>
+                <List.Description>
+                    <List.Icon name="calendar outline" size="mini" /> <span style={{fontSize:'18px'}}>6/18</span>
+                    <List.Icon name="file outline" size="mini" />
+                    <List.Icon name="comment outline" size="mini" />
+                </List.Description>
+            </List.Content>
+        </List.Item>
+      </List>
+
+    );
+}
+
+export  default TodoItems;
