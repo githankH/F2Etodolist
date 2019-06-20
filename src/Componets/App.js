@@ -4,7 +4,7 @@ import {
   Grid,Header} from 'semantic-ui-react';
 
 import TodoInput from './TodoInput';
-import TodoItems,{TodoLists} from './TodoItems';
+import {TodoLists} from './TodoItems';
 //import  TodoLists  from './TodoLists';
 
 
@@ -25,7 +25,7 @@ class App extends React.Component{
       id: 0,
       content: 'Item-1',
       edit: false,
-      completed: false,
+      'completed': false,
       atTop: false,
       date: false,
       file: true,
@@ -35,7 +35,7 @@ class App extends React.Component{
       id: 1,
       content: 'Item-2',
       edit: false,
-      completed: false,
+      'completed': false,
       atTop: true,
       date: true,
       file: true,
@@ -52,7 +52,7 @@ class App extends React.Component{
     todo.content=term;
     todo.id=this.state.nextid;
     todo.edit=false;
-    todo.completed=false;
+    todo['completed']=false;
     todo.atTop=false;
     todo.date=false;
     todo.file=true;
@@ -61,29 +61,30 @@ class App extends React.Component{
     this.setState({todos: newtodos,nextid:this.state.nextid+1});
   }
 
+  onIconClickHandler = (name,id)=>{
+    let todo=Object.assign({},this.state.todos[id]);
+    let newtodos=[...this.state.todos];
+    todo[name]=!todo[name];
+    newtodos.splice(id,1,todo);
+
+    this.setState({todos: newtodos});
+    console.log(this.state.todos);
+  }
+
   render(){
   return (
     <Container style={{margin:'3rem auto'}}>
       <Header as='h2'>Semantic UI React version</Header>
       <Divider />
       <Grid stackable centered  >
-        <Grid.Row >
+
         <Grid.Column  width={10} >
           <TodoInput getInputData={this.getInputData}/>
         </Grid.Column>
-        </Grid.Row>
 
-        <Grid.Row>
-        <Grid.Column  width={10} >
-           <TodoItems todos={this.state.todos}/>
+        <Grid.Column width={9}>
+           <TodoLists todos={this.state.todos} IconClickHandler={this.onIconClickHandler.bind(this)}/>
         </Grid.Column>
-        </Grid.Row>
-
-        <Grid.Row >
-        <Grid.Column width={10}>
-           <TodoLists />
-        </Grid.Column>
-        </Grid.Row>
 
       </Grid>
     </Container>
@@ -91,5 +92,10 @@ class App extends React.Component{
   );
   }
 }
+
+        /*
+        <Grid.Column  width={10} >
+           <TodoItems todos={this.state.todos}/>
+        </Grid.Column> */
 
 export default App;

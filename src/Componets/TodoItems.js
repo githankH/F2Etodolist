@@ -1,47 +1,37 @@
 import React from 'react';
-import {Item,Icon, List, Checkbox } from 'semantic-ui-react'
+import {Item,Icon, List, Checkbox, Button } from 'semantic-ui-react'
 
-function TodoItems ({todos,editTodoItem}){
-    return(
-        <Item.Group>
-            {todos.map((todo)=>{return(
-              <Item>
-                <Item.Content>
-                <Item.Header>{todo.content}</Item.Header>
-                <Item.Extra >
-                {todo.star?<Icon color='yellow' name='star' />:''}
-                {todo.file?<Icon color='yellow' name='file' />:''}
-                {todo.comment?<Icon color='yellow' name='comment' />:''}
-                </Item.Extra>
-                </Item.Content>
-               </Item>
-            )})}
-        </Item.Group>
-    );
-}
 
-export function TodoLists() {
+export function TodoLists({todos,IconClickHandler,editTodoItem}) {
     return (
-      <List size="huge" verticalAlign='middle'>
-        <List.Item >
-            <List.Content floated='right'>
-                <List.Icon name='edit outline' size='large'/>
-                <List.Icon name='star outline' size='large'/>
+      <List size="big" relaxed='very' verticalAlign='middle' divided>
+        {todos.map((todo)=>{return(
+          <List.Item key={todo.id}>
+            <List.Content floated='right' >
+                <List.Icon  link name='edit outline' size='large' />
+                <List.Icon  link name='star' color='yellow' size='large'/>
             </List.Content>
-            <List.Content>
-                <List.Header as='a'> 
-                    <Checkbox fitted label='what the this' style={{fontSize:'24px'}}/>
-                </List.Header>
-                <List.Description>
-                    <List.Icon name="calendar outline" size="mini" />
-                    <List.Icon name="file outline" size="mini" />
-                </List.Description>
-            </List.Content>
-        </List.Item>
 
+            <List.Icon
+               link
+               size='large'
+               onClick={()=>IconClickHandler('completed',todo.id)}
+               name={todo['completed']?'check square outline':'square outline'}  />
+            <List.Content verticalAlign='middle'>
+                <List.Header > {todo.content} {String(todo['completed'])}</List.Header >
+            </List.Content>
+            <List.Content style={{marginLeft:'2rem', marginTop:'.5rem'}}>
+                {todo.date?<List.Icon  name="calendar outline"/>  :''}
+                {todo.file?<List.Icon  name="file outline"  />:''}
+                {todo.comment?<List.Icon  name="comment outline" />:''}
+            </List.Content>
+          </List.Item>
+        )})}
       </List>
 
     );
 }
 
-export  default TodoItems;
+/*<Checkbox fitted label={todo.content} style={{fontSize:'24px'}}/>
+
+*/

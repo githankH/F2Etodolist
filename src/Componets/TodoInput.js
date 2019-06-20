@@ -19,19 +19,21 @@ class TodoInput extends React.Component{
 
     renderForm(){
       return(
-        <Form size='large' onSubmit={this.onSubmithandler}>
-        <Segment>
-        <Icon color='blue' name='square' size='large' />
-        <Form.Input 
-          icon='add'
-          iconPosition='left'
-          value={this.state.term}  
+        <Segment >
+        <Form widths='equal' onSubmit={this.onSubmithandler} style={{marginTop: '12px'}}>
+        <Form.Group inline >
+        <Icon link size='huge' name='square outline' />
+        <Form.Input size='huge'
+          value={this.state.term}
+          action={{ icon: 'add' }}
+          actionPosition='right'
           onChange={this.onChangehandler}/>
-        <Icon color='yellow' name='star' />
-        <Icon color='yellow' name='file' />
+        <Icon link color='yellow' size='big' name='star' />
+        </Form.Group>
+        </Form>
         </Segment>
 
-        </Form>
+
       );
     }
     render(){
