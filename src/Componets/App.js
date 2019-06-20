@@ -55,7 +55,7 @@ class App extends React.Component{
     todo.completed=false;
     todo.atTop=false;
     todo.date=false;
-    todo.file=false;
+    todo.file=true;
     todo.comment=false;
     newtodos.push(todo);
     this.setState({todos: newtodos,nextid:this.state.nextid+1});
@@ -74,19 +74,20 @@ class App extends React.Component{
         </Grid.Row>
 
         <Grid.Row>
-        <Grid.Column  width={2} >
+        <Grid.Column  width={10} >
            <TodoItems todos={this.state.todos}/>
         </Grid.Column>
         </Grid.Row>
 
         <Grid.Row >
-        <Grid.Column >
+        <Grid.Column width={10}>
            <TodoLists />
         </Grid.Column>
         </Grid.Row>
 
       </Grid>
     </Container>
+
   );
   }
 }
