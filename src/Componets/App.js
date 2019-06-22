@@ -23,40 +23,30 @@ class App extends React.Component{
   state={
     todos:[{
       id: 0,
-      content: 'Item-1',
+      content: 'II',
       edit: false,
-      'completed': false,
+      completed: false,
       atTop: false,
-      date: false,
+      date: '',
       file: true,
-      comment: false,
+      comment: '',
     },
-    {
-      id: 1,
-      content: 'Item-2',
-      edit: false,
-      'completed': false,
-      atTop: true,
-      date: true,
-      file: true,
-      comment: true,
-    }],
+ ],
     editTodoItem: 0,
-    nextid: 2,
+    nextid: 1,
   };
 
-  getInputData = (term)=>{
+  getInputData = (props)=>{
     let todo={};
     let newtodos=[...this.state.todos];
-    console.log(term);
-    todo.content=term;
+    todo.content=props['content'];
     todo.id=this.state.nextid;
-    todo.edit=false;
-    todo['completed']=false;
-    todo.atTop=false;
-    todo.date=false;
-    todo.file=true;
-    todo.comment=false;
+    todo.edit=props.edit;
+    todo.completed=props['completed'];
+    todo.atTop=props.atTop;
+    todo.date=props.date;
+    todo.file=props.file;
+    todo.comment=props['comment'];
     newtodos.push(todo);
     this.setState({todos: newtodos,nextid:this.state.nextid+1});
   }
@@ -68,7 +58,6 @@ class App extends React.Component{
     newtodos.splice(id,1,todo);
 
     this.setState({todos: newtodos});
-    console.log(this.state.todos);
   }
 
   render(){
@@ -92,10 +81,4 @@ class App extends React.Component{
   );
   }
 }
-
-        /*
-        <Grid.Column  width={10} >
-           <TodoItems todos={this.state.todos}/>
-        </Grid.Column> */
-
 export default App;

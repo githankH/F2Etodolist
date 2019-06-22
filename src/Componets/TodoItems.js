@@ -1,5 +1,5 @@
 import React from 'react';
-import {Item,Icon, List, Checkbox, Button } from 'semantic-ui-react'
+import { List } from 'semantic-ui-react'
 
 
 export function TodoLists({todos,IconClickHandler,editTodoItem}) {
@@ -8,20 +8,20 @@ export function TodoLists({todos,IconClickHandler,editTodoItem}) {
         {todos.map((todo)=>{return(
           <List.Item key={todo.id}>
             <List.Content floated='right' >
-                <List.Icon  link name='edit outline' size='large' />
-                <List.Icon  link name='star' color='yellow' size='large'/>
+                <List.Icon  link name='edit outline' size='big' />
+                <List.Icon  link name='star outline' size='big'/>
             </List.Content>
 
             <List.Icon
                link
                size='large'
                onClick={()=>IconClickHandler('completed',todo.id)}
-               name={todo['completed']?'check square outline':'square outline'}  />
+               name={todo.completed?'check square outline':'square outline'}  />
             <List.Content verticalAlign='middle'>
-                <List.Header > {todo.content} {String(todo['completed'])}</List.Header >
+                <List.Header > {todo.content} </List.Header >
             </List.Content>
             <List.Content style={{marginLeft:'2rem', marginTop:'.5rem'}}>
-                {todo.date?<List.Icon  name="calendar outline"/>  :''}
+                {todo.date?<List.Icon  name="calendar outline"/>   :''}{todo.date}
                 {todo.file?<List.Icon  name="file outline"  />:''}
                 {todo.comment?<List.Icon  name="comment outline" />:''}
             </List.Content>
