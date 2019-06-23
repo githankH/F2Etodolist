@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Container,Divider, 
+  Container,Divider,
   Grid,Header} from 'semantic-ui-react';
 
 import TodoInput from './TodoInput';
@@ -21,43 +21,81 @@ one todo has
 
 class App extends React.Component{
   state={
-    todos:[{
-      id: 0,
-      content: 'II',
-      edit: false,
-      completed: false,
-      atTop: false,
-      date: '',
-      file: true,
-      comment: '',
+    todos:[],
+    editTodo: {
+      id:NaN,
+      content:'',
+      completed:'',
+      atTop:false,
+      date:'',
+      file:false,
+      comment:'',
     },
- ],
-    editTodoItem: 0,
-    nextid: 1,
   };
 
   getInputData = (props)=>{
     let todo={};
     let newtodos=[...this.state.todos];
     todo.content=props['content'];
-    todo.id=this.state.nextid;
-    todo.edit=props.edit;
+    todo.id=Date.now();
     todo.completed=props['completed'];
     todo.atTop=props.atTop;
-    todo.date=props.date;
+    todo.date=props['date'];
     todo.file=props.file;
     todo.comment=props['comment'];
     newtodos.push(todo);
-    this.setState({todos: newtodos,nextid:this.state.nextid+1});
+    this.setState({todos: newtodos});
+  }
+
+  updateCompleted = (name,idx)=>{
+    let newtodos=[...this.state.todos];
+    let todo=Object.assign({},this.state.todos[idx]);
+    todo[name]=!todo[name];
+    newtodos.splice(idx,1);
+    newtodos.push(todo);
+    this.setState({todos: newtodos});
+  }
+
+  updateAtTop = (name,idx) =>{
+    let newtodos=[...this.state.todos];
+    let todo=Object.assign({},this.state.todos[idx]);
+    todo[name]=!todo[name];
+    newtodos.splice(idx,1);
+    newtodos.unshift(todo);
+    this.setState({todos: newtodos});
+  }
+
+  editExistTodos = (idx)=>{
+    let todo=Object.assign({},this.state.todos[idx]);
+    this.setState({editTodo:todo});
+  }
+
+  deleteTodo = (idx)=>{
+    let newtodos=[...this.state.todos];
+    newtodos.splice(idx,1);
+    this.setState({todos: newtodos});
   }
 
   onIconClickHandler = (name,id)=>{
-    let todo=Object.assign({},this.state.todos[id]);
-    let newtodos=[...this.state.todos];
-    todo[name]=!todo[name];
-    newtodos.splice(id,1,todo);
+    let idx=this.state.todos.findIndex((item)=>item.id===id);
 
-    this.setState({todos: newtodos});
+    switch(name){
+      case 'completed':
+        this.updateCompleted('completed',idx);
+      break;
+      case 'atTop':
+        this.updateAtTop('atTop',idx);
+      break;
+      case 'edit':
+        this.editExistTodos(idx);
+      break;
+      case 'delete':
+        this.deleteTodo(idx);
+      break;
+      default:
+      break;
+    }
+
   }
 
   render(){
@@ -68,10 +106,10 @@ class App extends React.Component{
       <Grid stackable centered  >
 
         <Grid.Column  width={10} >
-          <TodoInput getInputData={this.getInputData}/>
+            <TodoInput getInputData={this.getInputData }  {...this.state.editTodo} />
         </Grid.Column>
 
-        <Grid.Column width={9}>
+        <Grid.Column width={10}>
            <TodoLists todos={this.state.todos} IconClickHandler={this.onIconClickHandler.bind(this)}/>
         </Grid.Column>
 

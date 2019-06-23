@@ -1,24 +1,37 @@
 import React from 'react';
-import { List } from 'semantic-ui-react'
+import { List,Button, Icon } from 'semantic-ui-react';
 
+/*
+*/
 
-export function TodoLists({todos,IconClickHandler,editTodoItem}) {
+export function TodoLists({todos,IconClickHandler}) {
     return (
       <List size="big" relaxed='very' verticalAlign='middle' divided>
         {todos.map((todo)=>{return(
           <List.Item key={todo.id}>
             <List.Content floated='right' >
-                <List.Icon  link name='edit outline' size='big' />
-                <List.Icon  link name='star outline' size='big'/>
+                <List.Icon link
+                  name='edit outline'
+                  size='big'
+                  onClick={()=>IconClickHandler('edit',todo.id)}/>
+                <List.Icon link
+                  name={todo.atTop? 'star':'star outline' }
+                  color={todo.atTop? 'yellow':'black'}
+                  size='big'
+                  onClick={()=>IconClickHandler('atTop',todo.id)}/>
             </List.Content>
 
             <List.Icon
                link
                size='large'
-               onClick={()=>IconClickHandler('completed',todo.id)}
-               name={todo.completed?'check square outline':'square outline'}  />
+               name={todo.completed?'check square outline':'square outline'}
+               onClick={()=>IconClickHandler('completed',todo.id)}/>
             <List.Content verticalAlign='middle'>
-                <List.Header > {todo.content} </List.Header >
+                <List.Header > {todo.content}
+                  <Button basic icon floated='right' onClick={()=>IconClickHandler('delete',todo.id)}>
+                    <Icon name='delete' color='red'/>
+                  </Button>
+                </List.Header >
             </List.Content>
             <List.Content style={{marginLeft:'2rem', marginTop:'.5rem'}}>
                 {todo.date?<List.Icon  name="calendar outline"/>   :''}{todo.date}
@@ -32,6 +45,3 @@ export function TodoLists({todos,IconClickHandler,editTodoItem}) {
     );
 }
 
-/*<Checkbox fitted label={todo.content} style={{fontSize:'24px'}}/>
-
-*/
