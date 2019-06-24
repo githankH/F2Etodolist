@@ -76,10 +76,11 @@ class App extends React.Component{
     this.setState({todos: newtodos});
   }
 
-  onIconClickHandler = (name,id)=>{
+  onIconClickHandler = (ev)=>{
+    let id=parseInt(ev.currentTarget.dataset.itemid);
     let idx=this.state.todos.findIndex((item)=>item.id===id);
 
-    switch(name){
+    switch(ev.currentTarget.dataset.iconname){
       case 'completed':
         this.updateCompleted('completed',idx);
       break;
@@ -95,7 +96,6 @@ class App extends React.Component{
       default:
       break;
     }
-
   }
 
   render(){

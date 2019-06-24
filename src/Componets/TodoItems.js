@@ -13,23 +13,34 @@ export function TodoLists({todos,IconClickHandler}) {
                 <List.Icon link
                   name='edit outline'
                   size='big'
-                  onClick={()=>IconClickHandler('edit',todo.id)}/>
+                  data-iconname='edit'
+                  data-itemid={todo.id}
+                  //onClick={(ev)=>IconClickHandler(ev,'edit',todo.id)}/>
+                  onClick={IconClickHandler}/>
                 <List.Icon link
                   name={todo.atTop? 'star':'star outline' }
                   color={todo.atTop? 'yellow':'black'}
                   size='big'
-                  onClick={()=>IconClickHandler('atTop',todo.id)}/>
+                  data-iconname='atTop'
+                  data-itemid={todo.id}
+                  onClick={IconClickHandler}/>
             </List.Content>
 
             <List.Icon
                link
                size='large'
                name={todo.completed?'check square outline':'square outline'}
-               onClick={()=>IconClickHandler('completed',todo.id)}/>
+               data-iconname='completed'
+               data-itemid={todo.id}
+               onClick={IconClickHandler}/>
             <List.Content verticalAlign='middle'>
                 <List.Header > {todo.content}
-                  <Button basic icon floated='right' onClick={()=>IconClickHandler('delete',todo.id)}>
-                    <Icon name='delete' color='red'/>
+                  <Button basic icon
+                    floated='right'
+                    data-itemid={todo.id}
+                    data-iconname='delete'
+                    onClick={IconClickHandler}>
+                      <Icon name='delete' color='red'/>
                   </Button>
                 </List.Header >
             </List.Content>
