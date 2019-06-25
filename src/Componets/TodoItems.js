@@ -1,9 +1,6 @@
 import React from 'react';
 import { List,Button, Icon } from 'semantic-ui-react';
 
-/*
-*/
-
 export function TodoLists({todos,IconClickHandler}) {
     return (
       <List size="big" relaxed='very' verticalAlign='middle' divided>

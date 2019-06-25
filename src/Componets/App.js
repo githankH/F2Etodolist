@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Container,Divider,
-  Grid,Header} from 'semantic-ui-react';
+  Grid,Header, Menu} from 'semantic-ui-react';
 
 import TodoInput from './TodoInput';
 import {TodoLists} from './TodoItems';
@@ -20,29 +20,31 @@ one todo has
  */
 
 class App extends React.Component{
+//class TabContent extends React.Component{
   state={
     todos:[],
     editTodo: {
       id:NaN,
       content:'',
-      completed:'',
+      completed:false,
       atTop:false,
       date:'',
       file:false,
       comment:'',
+      show:'',
     },
   };
 
-  getInputData = (props)=>{
+  getInputData = (data)=>{
     let todo={};
     let newtodos=[...this.state.todos];
-    todo.content=props['content'];
+    todo.content=data['content'];
     todo.id=Date.now();
-    todo.completed=props['completed'];
-    todo.atTop=props.atTop;
-    todo.date=props['date'];
-    todo.file=props.file;
-    todo.comment=props['comment'];
+    todo.completed=data['completed'];
+    todo.atTop=data.atTop;
+    todo.date=data['date'];
+    todo.file=data.file;
+    todo.comment=data['comment'];
     newtodos.push(todo);
     this.setState({todos: newtodos});
   }
@@ -98,10 +100,31 @@ class App extends React.Component{
     }
   }
 
+  menuItemClick = (e,{name})=>(this.setState({show:name}))
+
+  filterTodos =(condition)=>{
+    console.log('condition',condition);
+    if(condition === undefined){
+      return this.state.todos;
+    }
+
+    if(condition){
+      return this.state.todos.filter((todo)=>todo.completed === condition)
+    }else{
+      return this.state.todos.filter((todo)=>todo.completed !== condition)
+    }
+  }
+
   render(){
   return (
     <Container style={{margin:'3rem auto'}}>
-      <Header as='h2'>Semantic UI React version</Header>
+      <Menu pointing secondary>
+        <Menu.Item name='option1' active={this.state.show === 'option1'} onClick={this.menuItemClick}/>
+        <Menu.Item name='option2' active={this.state.show === 'option2'}  onClick={this.menuItemClick}/>
+
+      </Menu>
+
+      <Header as='h2'>{this.props.logo}{' - '}Semantic UI React version</Header>
       <Divider />
       <Grid stackable centered  >
 
@@ -110,7 +133,9 @@ class App extends React.Component{
         </Grid.Column>
 
         <Grid.Column width={10}>
-           <TodoLists todos={this.state.todos} IconClickHandler={this.onIconClickHandler.bind(this)}/>
+           <TodoLists
+             todos={this.filterTodos(this.props.completed)}
+             IconClickHandler={this.onIconClickHandler.bind(this)}/>
         </Grid.Column>
 
       </Grid>
@@ -118,5 +143,31 @@ class App extends React.Component{
 
   );
   }
-}
+};
+/*
+const panes = [
+  {
+    menuItem:'My Task',
+    pane:{
+      key:'mytask',
+      content:(<TabContent logo='My Task'/>),
+    }
+  },
+  {
+    menuItem:'In progress',
+    pane:{
+      key:'inprogress',
+      content:(<TabContent logo='In progress' completed={false}/>),
+    }
+  },
+  {
+    menuItem:'Completed',
+    pane:{
+      key:'completed',
+      content:(<TabContent logo='Completed' completed={true} />),
+    }
+  },
+]
+*/
+
 export default App;
