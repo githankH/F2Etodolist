@@ -5,6 +5,17 @@ UI design pattern.
 https://hexschool.github.io/THE_F2E_Design/todolist/
 ===============
 
+6/25 
+
+Add Menu function,
+it could filter out 
+'my task'
+'in progress'
+'completed'
+
+by chossing different 'completed' status
+
+=================
 6/24
 
 update iconhandler with data-* attribute

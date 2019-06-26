@@ -23,6 +23,7 @@ class App extends React.Component{
 //class TabContent extends React.Component{
   state={
     todos:[],
+    show:'My Task',
     editTodo: {
       id:NaN,
       content:'',
@@ -31,7 +32,6 @@ class App extends React.Component{
       date:'',
       file:false,
       comment:'',
-      show:'',
     },
   };
 
@@ -102,30 +102,36 @@ class App extends React.Component{
 
   menuItemClick = (e,{name})=>(this.setState({show:name}))
 
-  filterTodos =(condition)=>{
-    console.log('condition',condition);
-    if(condition === undefined){
-      return this.state.todos;
-    }
-
-    if(condition){
-      return this.state.todos.filter((todo)=>todo.completed === condition)
-    }else{
-      return this.state.todos.filter((todo)=>todo.completed !== condition)
-    }
+  filterTodos = ()=>{
+    const {show, todos} = this.state;
+    if(show === 'My Task')
+      return todos;
+    if(show === 'In Progress')
+      return todos.filter((todo)=>!todo.completed);
+    if(show === 'Completed')
+      return todos.filter((todo)=>todo.completed);
   }
 
-  render(){
+  render() {
   return (
     <Container style={{margin:'3rem auto'}}>
-      <Menu pointing secondary>
-        <Menu.Item name='option1' active={this.state.show === 'option1'} onClick={this.menuItemClick}/>
-        <Menu.Item name='option2' active={this.state.show === 'option2'}  onClick={this.menuItemClick}/>
-
+      <Header as='h2'>Semantic UI React TodoList version</Header>
+      <Divider />
+      <Menu widths='12' pointing secondary>
+        <Menu.Item
+          name='My Task'
+          active={this.state.show === 'My Task'}
+          onClick={this.menuItemClick}/>
+        <Menu.Item
+          name='In Progress'
+          active={this.state.show === 'In Progress'}
+          onClick={this.menuItemClick}/>
+        <Menu.Item
+          name='Completed'
+          active={this.state.show === 'Completed'}
+          onClick={this.menuItemClick}/>
       </Menu>
 
-      <Header as='h2'>{this.props.logo}{' - '}Semantic UI React version</Header>
-      <Divider />
       <Grid stackable centered  >
 
         <Grid.Column  width={10} >
@@ -143,7 +149,7 @@ class App extends React.Component{
 
   );
   }
-};
+}
 /*
 const panes = [
   {

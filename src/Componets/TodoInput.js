@@ -74,7 +74,7 @@ class TodoInput extends React.Component{
       return(
         <Card fluid >
         <Card.Content>
-        <Form widths='equal' onSubmit={this.onSubmithandler} style={{marginTop: '12px'}}>
+        <Form widths='equal' onSubmit={this.onSubmithandler} >
 
             <Grid verticalAlign='middle' textAlign='justified'>
             <Grid.Column width='1'>

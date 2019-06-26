@@ -12,7 +12,6 @@ export function TodoLists({todos,IconClickHandler}) {
                   size='big'
                   data-iconname='edit'
                   data-itemid={todo.id}
-                  //onClick={(ev)=>IconClickHandler(ev,'edit',todo.id)}/>
                   onClick={IconClickHandler}/>
                 <List.Icon link
                   name={todo.atTop? 'star':'star outline' }
