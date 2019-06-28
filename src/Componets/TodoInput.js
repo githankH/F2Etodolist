@@ -5,25 +5,43 @@ import { Form, Icon,Grid, TextArea,Card,Button } from 'semantic-ui-react';
 
 class TodoInput extends React.Component{
 
-    state = { focus:'none',
-    atTop: false,
-    file: false,
-    'content': '',
-    'completed': false,
-    'date': '',
-    'comment': '',
+    state = { 
+      focus:'none',
+      id:NaN,
+      atTop: false,
+      file: false,
+      'content': '',
+      'completed': false,
+      'date': '',
+      'comment': '',
     };
 
-    componentDidUpdate(prevProps,prevState) {
+    comparePrevDiff(prev){
+      const {comment,content,date} = this.props;
+      if(content === '')
+        return false;
+      if(comment === prev['comment'] &&
+         content === prev['content'] &&
+         date === prev['date']
+        ){
+          return false;
+        }else{
+          return true;
+        }
+    }
 
-      const {atTop,comment,completed,content,date,file} = this.props;
-      if(content !== prevState.content &&
-         content !== prevProps.content ){
-          /*console.log('props.content',content);
+    componentDidUpdate(prevProps,prevState) {
+      const {id,atTop,comment,completed,content,date,file} = this.props;
+      
+      if(this.comparePrevDiff(prevProps) 
+          ){
+          /*
+          console.log('props.content',content);
           console.log('prevProps.content',prevProps.content);
           console.log('prevState.content',prevState.content);*/
         this.setState({
           focus:'block',
+          id:id,
           atTop: atTop,
           file: file,
           'content': content,
@@ -37,6 +55,7 @@ class TodoInput extends React.Component{
     clearState = ()=>{
       this.setState({
         focus:'none',
+        id:NaN,
         atTop: false,
         file: false,
         'content': '',

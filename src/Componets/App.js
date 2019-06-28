@@ -38,14 +38,20 @@ class App extends React.Component{
   getInputData = (data)=>{
     let todo={};
     let newtodos=[...this.state.todos];
+    todo.id = data.id;
     todo.content=data['content'];
-    todo.id=Date.now();
     todo.completed=data['completed'];
     todo.atTop=data.atTop;
     todo.date=data['date'];
     todo.file=data.file;
     todo.comment=data['comment'];
-    newtodos.push(todo);
+    if(isNaN(data.id)){
+      todo.id=Date.now();
+      newtodos.push(todo);  
+    }else{
+      let idx=this.state.todos.findIndex((item)=>item.id===data.id);
+      newtodos.splice(idx,1,todo);
+    }
     this.setState({todos: newtodos});
   }
 
