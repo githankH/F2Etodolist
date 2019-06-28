@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "06ba39b522c5c10aee23ab7d77e2d28f",
+    "revision": "78639ce13dd523f42d2174caa9293573",
     "url": "/F2Etodolist/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/F2Etodolist/static/js/2.d55f8025.chunk.js"
   },
   {
-    "revision": "64d406b399a5475a26c5",
-    "url": "/F2Etodolist/static/js/main.38b82490.chunk.js"
+    "revision": "a098f16e314cc5ea6125",
+    "url": "/F2Etodolist/static/js/main.a0b206e2.chunk.js"
   },
   {
     "revision": "ea48723cf219cf839117",

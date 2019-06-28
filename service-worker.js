@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/F2Etodolist/precache-manifest.83899eeb923f6b0fe71ba3d0d9f103d7.js"
+  "/F2Etodolist/precache-manifest.73c5e5fa28b616ba747860bba5f64cfe.js"
 );
 
 self.addEventListener('message', (event) => {
