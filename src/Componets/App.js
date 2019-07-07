@@ -49,15 +49,16 @@ class App extends React.Component{
       todo.id=Date.now();
       newtodos.push(todo);  
     }else{
-      let idx=this.state.todos.findIndex((item)=>item.id===data.id);
+      let idx=newtodos.findIndex((item)=>item.id===data.id);
       newtodos.splice(idx,1,todo);
     }
     this.setState({todos: newtodos});
   }
 
-  updateCompleted = (name,idx)=>{
+  updateCompleted = (name,idx)=>{ 
     let newtodos=[...this.state.todos];
-    let todo=Object.assign({},this.state.todos[idx]);
+    //let todo=Object.assign({},this.state.todos[idx]);
+    let todo={...this.state.todos[idx]};
     todo[name]=!todo[name];
     newtodos.splice(idx,1);
     newtodos.push(todo);
@@ -66,7 +67,8 @@ class App extends React.Component{
 
   updateAtTop = (name,idx) =>{
     let newtodos=[...this.state.todos];
-    let todo=Object.assign({},this.state.todos[idx]);
+    //let todo=Object.assign({},this.state.todos[idx]);
+    let todo={...this.state.todos[idx]};
     todo[name]=!todo[name];
     newtodos.splice(idx,1);
     newtodos.unshift(todo);
@@ -86,6 +88,7 @@ class App extends React.Component{
 
   onIconClickHandler = (ev)=>{
     let id=parseInt(ev.currentTarget.dataset.itemid);
+    //using filter and ...rest op to do array add/delete ?
     let idx=this.state.todos.findIndex((item)=>item.id===id);
 
     switch(ev.currentTarget.dataset.iconname){
