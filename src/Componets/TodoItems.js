@@ -12,14 +12,14 @@ export function TodoLists({todos,IconClickHandler}) {
                   size='big'
                   data-iconname='edit'
                   data-itemid={todo.id}
-                  onClick={IconClickHandler}/>
+                />
                 <List.Icon link
                   name={todo.atTop? 'star':'star outline' }
                   color={todo.atTop? 'yellow':'black'}
                   size='big'
                   data-iconname='atTop'
-                  data-itemid={todo.id}
-                  onClick={IconClickHandler}/>
+                  data-itemid={todo.id} 
+                />
             </List.Content>
 
             <List.Icon
@@ -28,15 +28,15 @@ export function TodoLists({todos,IconClickHandler}) {
                name={todo.completed?'check square outline':'square outline'}
                data-iconname='completed'
                data-itemid={todo.id}
-               onClick={IconClickHandler}/>
+            />
             <List.Content verticalAlign='middle'>
                 <List.Header > {todo.content}
                   <Button basic icon
                     floated='right'
                     data-itemid={todo.id}
                     data-iconname='delete'
-                    onClick={IconClickHandler}>
-                      <Icon name='delete' color='red'/>
+                  >
+                    <Icon name='delete' color='red' data-iconname='delete' data-itemid={todo.id}/>
                   </Button>
                 </List.Header >
             </List.Content>

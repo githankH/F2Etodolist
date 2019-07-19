@@ -87,11 +87,11 @@ class App extends React.Component{
   }
 
   onIconClickHandler = (ev)=>{
-    let id=parseInt(ev.currentTarget.dataset.itemid);
+    let id=parseInt(ev.target.dataset.itemid);
     //using filter and ...rest op to do array add/delete ?
     let idx=this.state.todos.findIndex((item)=>item.id===id);
-
-    switch(ev.currentTarget.dataset.iconname){
+    console.log(ev.target,id);
+    switch(ev.target.dataset.iconname){
       case 'completed':
         this.updateCompleted('completed',idx);
       break;
@@ -148,9 +148,11 @@ class App extends React.Component{
         </Grid.Column>
 
         <Grid.Column width={10}>
+          <div onClick={this.onIconClickHandler.bind(this)}>
            <TodoLists
              todos={this.filterTodos(this.props.completed)}
-             IconClickHandler={this.onIconClickHandler.bind(this)}/>
+           />
+          </div>
         </Grid.Column>
 
       </Grid>
