@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/F2Etodolist/static/js/main.a0b206e2.chunk.js",
-    "main.js.map": "/F2Etodolist/static/js/main.a0b206e2.chunk.js.map",
+    "main.js": "/F2Etodolist/static/js/main.c4904c4d.chunk.js",
+    "main.js.map": "/F2Etodolist/static/js/main.c4904c4d.chunk.js.map",
     "runtime~main.js": "/F2Etodolist/static/js/runtime~main.c501aa96.js",
     "runtime~main.js.map": "/F2Etodolist/static/js/runtime~main.c501aa96.js.map",
-    "static/js/2.d55f8025.chunk.js": "/F2Etodolist/static/js/2.d55f8025.chunk.js",
-    "static/js/2.d55f8025.chunk.js.map": "/F2Etodolist/static/js/2.d55f8025.chunk.js.map",
+    "static/js/2.98213072.chunk.js": "/F2Etodolist/static/js/2.98213072.chunk.js",
+    "static/js/2.98213072.chunk.js.map": "/F2Etodolist/static/js/2.98213072.chunk.js.map",
     "index.html": "/F2Etodolist/index.html",
-    "precache-manifest.73c5e5fa28b616ba747860bba5f64cfe.js": "/F2Etodolist/precache-manifest.73c5e5fa28b616ba747860bba5f64cfe.js",
+    "precache-manifest.31ba4536298176d80aba782957fa79bb.js": "/F2Etodolist/precache-manifest.31ba4536298176d80aba782957fa79bb.js",
     "service-worker.js": "/F2Etodolist/service-worker.js"
   }
 }
